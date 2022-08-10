@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+<title>Insert title here</title>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
+<!-- JavaScript Bundle with Popper -->
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+	crossorigin="anonymous"></script>
+</head>
+<body>
+	<h2>シミュレーション結果</h2>
+
+	<script th:inline="javascript">
+		var str = /*[[${json}]]*/"json";
+	</script>
+	<script type="text/javascript">
+
+	</script>
+	<canvas id="canvas"></canvas>
+	<script type="text/javascript" th:src="@{/js/graph3.js}"></script>
+
+
+	<!-- 複数の数値の計算結果 -->
+	<th:block th:if="${list1}">
+
+		<table class="table" border="1">
+			<tr>
+				<th>数値</th>
+				<th>桁数</th>
+				<th>試行回数</th>
+				<th>偶数回</th>
+				<th>奇数回</th>
+				<th>最大出現値</th>
+			</tr>
+			<tr th:each="data, stat : ${list1}">
+				<td th:text="${data.num}" />
+				<td th:text="${data.len}" />
+				<td th:text="${data.count}" />
+				<td th:text="${data.evenCount}" />
+				<td th:text="${data.oddCount}" />
+				<td th:text="${data.max.toString()}" />
+			</tr>
+		</table>
+	</th:block>
+
+	<!-- 1つの数値の計算結果 -->
+	<th:block th:if="${list2}">
+		<table class="table" border="1">
+			<tr>
+				<th>桁数</th>
+				<th>試行回数</th>
+				<th>偶数回</th>
+				<th>奇数回</th>
+				<th>最大出現値</th>
+			</tr>
+			<tr>
+				<td th:text="${d.len}" />
+				<td th:text="${d.count}" />
+				<td th:text="${d.evenCount}" />
+				<td th:text="${d.oddCount}" />
+				<td th:text="${d.max.toString()}" />
+			</tr>
+		</table>
+
+		<table class="table" border="1">
+			<tr>
+				<th>count</th>
+				<th>number</th>
+			</tr>
+			<tr th:each="data, stat : ${list2}">
+				<td th:text="${stat.count} - 1" />
+				<td th:text="${data.toString()}" />
+			</tr>
+		</table>
+	</th:block>
+
+	<!-- 巨大数の数値の計算結果 -->
+	<th:block th:if="${list3}">
+
+		<div th:text="${name}"></div>
+		<table class="table" border="1">
+			<tr>
+				<th>桁数</th>
+				<th>試行回数</th>
+				<th>偶数回</th>
+				<th>奇数回</th>
+				<th>最大出現値</th>
+			</tr>
+			<tr th:each="data, stat : ${list3}">
+				<td th:text="${data.len}" />
+				<td th:text="${data.count}" />
+				<td th:text="${data.evenCount}" />
+				<td th:text="${data.oddCount}" />
+				<td th:text="${data.max.toString()}" />
+			</tr>
+		</table>
+	</th:block>
+
+
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+		integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+		integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+		crossorigin="anonymous"></script>
+
+</body>
+</html>
