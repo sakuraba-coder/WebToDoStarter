@@ -6,6 +6,8 @@ import java.util.List;
 
 public class Collatz {
 
+	//sample
+
 	private MaxCount mc = new MaxCount("", 0);
 
 	private DataBean data;
